@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddProductForm from '../AddProductForm/AddProductForm';
+import AddProductForm from './AddProductForm';
 
 class AddProductPage extends Component {
   render() {
@@ -7,7 +7,7 @@ class AddProductPage extends Component {
       <div className='page-container'>
 
       <section>
-          <h1 className='section-title'>Add New Product</h1>
+        <h1 className='section-title'>Add New Product</h1>
       </section>
 
       <AddProductForm />

@@ -1,46 +1,72 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
+import APIContext from '../APIContext';
+import { Link } from 'react-router-dom';
 
 class Dashboard extends Component {
+  static contextType = APIContext;
+
   render() {
     return (
-      <div className="page-container">
+      <div className='page-container'>
 
         <section>
-          <h1 className="section-title">Dashboard</h1>
-          <div>
-            <button type="button">Create a New Group</button>
-            <button type="button">Join an Existing Group</button>
-          </div>
+          <h1 className='section-title'>Dashboard</h1>
         </section>
 
         <section>
-          <h1 className="section-title">My Products</h1>
+          <h2 className='section-title'>My Groups</h2>
+
           <div>
-            <button type="button">Add New Product</button>
+            <Link className='button' to='/groups/new'>Create a New Group</Link>
           </div>
+
+          <hr />
+
+          {this.context.groups.map(group => (
+            <div key={group.id}>
+              <h3>
+                {group.name} - {group.code}
+              </h3>
+
+              <div>
+                <Link className='button' to={`/groups/${group.id}/edit`}>Edit</Link>
+                <button onClick={() => this.context.deleteGroup(group.id)} type='button'>Delete</button>
+              </div>
+
+              <hr />
+            </div>
+          ))}
         </section>
 
-        <section>
-          <p className="category-type">Category: Kitchen</p>
-          <h3>
-            <a href="https://www.bestbuy.com/site/samsung-28-cu-ft-large-capacity-3-door-french-door-refrigerator-with-autofill-water-pitcher-fingerprint-resistant-stainless-steel/6417768.p?skuId=6417768">Samsung Refridgerator</a>
-          </h3>
-          <p>28 cu. ft. Large Capacity 3-Door French Door Refrigerator with AutoFill Water Pitcher - Fingerprint Resistant Stainless Steel</p>
-          <div>
-            <button type="button">Edit</button>
-          </div>
-        </section>
 
         <section>
-          <p className="category-type">Category: Living Room</p>
-          <h3>
-            <a href="https://www.bestbuy.com/site/sonos-beam-soundbar-with-voice-control-built-in-black/6253409.p?skuId=6253409"> Sonos TV Soundbar</a>
-          </h3>
-          <p>Sonos - Beam Soundbar with Voice Control built-in - Black</p>
+          <h2 className='section-title'>My Products</h2>
+
           <div>
-            <button type="button">Edit</button>
+            <Link className='button' to='/products/new'>Add New Product</Link>
           </div>
+
+          <hr />
+
+          {this.context.products.map(product => (
+            <div key={product.id}>
+              <p className='category-type'>Category: {product.category}</p>
+
+              <h3>
+                <a href={product.url}>{product.name}</a>
+              </h3>
+
+              <p>{product.comments}</p>
+
+              <div>
+                <Link className='button' to={`/products/${product.id}/edit`}>Edit</Link>
+                <button onClick={() => this.context.deleteProduct(product.id)} type='button'>Delete</button>
+              </div>
+
+              <hr />
+            </div>
+          ))}
         </section>
       </div>
     );
