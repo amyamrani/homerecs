@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SignupForm from '../SignupForm/SignupForm';
+import { Link } from 'react-router-dom';
 import './LandingPage.css';
 
 class LandingPage extends Component {
@@ -39,10 +40,10 @@ class LandingPage extends Component {
           <div className='landing-section-content'>
             <h2 className='section-title'>Add & Manage Your Product Recommendations</h2>
             <p>Simpy select a category, enter the product name along with a link and comment if you choose</p>
-            <p>And easily update your product if you need</p>
             <div>
               *placeholder for screenshot*
             </div>
+            <p>And easily update your product if you need</p>
           </div>
         </section>
 
@@ -52,9 +53,10 @@ class LandingPage extends Component {
 
             <SignupForm />
 
-            <p>Or try the
-              <a href='http://www.google.com' className='signup-login-links'>DEMO</a>
-              first!
+            <p>
+              Or try the {' '}
+              <Link to='/dashboard#'>DEMO</Link>
+              {' '} first!
             </p>
           </div>
         </section>

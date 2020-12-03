@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import APIContext from '../APIContext';
 import Nav from '../Nav/Nav';
 import LandingPage from '../LandingPage/LandingPage';
@@ -9,6 +9,8 @@ import AddProductPage from '../AddProductPage/AddProductPage';
 import EditProductPage from '../EditProductPage/EditProductPage';
 import AddGroupPage from '../AddGroupPage/AddGroupPage';
 import EditGroupPage from '../EditGroupPage/EditGroupPage';
+import GroupPage from '../GroupPage/GroupPage';
+import UserPage from '../UserPage/UserPage';
 import Footer from '../Footer/Footer';
 import './App.css';
 import STORE from '../store';
@@ -22,7 +24,7 @@ class App extends Component {
       products: STORE.products,
       groups: STORE.groups,
     }
-  }
+}
 
   addProduct = (product) => {
     this.setState({ products: [...this.state.products, product] });
@@ -124,12 +126,37 @@ class App extends Component {
               />
 
               <Route
+                exact path='/groups/:id'
+                render={(routerProps) => {
+                  const id = routerProps.match.params.id;
+                  const group = contextValue.groups.find(group => group.id === Number(id));
+
+                  if (!group) {
+                    return <Redirect to='/dashboard' />
+                  }
+
+                  return <GroupPage group={group} users={STORE.users} />
+                }}
+              />
+
+              <Route
                 exact path='/groups/:id/edit'
                 render={(routerProps) => {
                   const id = routerProps.match.params.id;
                   const group = contextValue.groups.find(group => group.id === Number(id));
 
                   return <EditGroupPage group={group} />
+                }}
+              />
+
+              <Route
+                exact path='/users/:id'
+                render={(routerProps) => {
+                  const id = routerProps.match.params.id;
+                  const user = STORE.users.find(user => user.id === Number(id));
+                  const products = contextValue.products.filter(product => product.user_id === user.id);
+
+                  return <UserPage user={user} products={products} />
                 }}
               />
             </Switch>

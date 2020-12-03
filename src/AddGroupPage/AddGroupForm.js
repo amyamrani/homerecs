@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIContext from '../APIContext';
 import { withRouter } from 'react-router-dom';
+import './GroupForm.css';
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));

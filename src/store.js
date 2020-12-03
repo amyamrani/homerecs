@@ -52,7 +52,7 @@ export default {
       name: 'Sutton Light Tone Dresser',
       url: 'https://www.cityfurniture.com/product/35006/sg-sutton-dark-tone-dresser',
       comments: 'Great quality dresser.',
-      category: 'Kitchen',
+      category: 'Bedroom',
     },
   ],
   groups: [
@@ -65,6 +65,24 @@ export default {
       id: 2,
       name: 'Group XYZ',
       code: 'bananas',
+    },
+  ],
+  users: [
+    {
+      id: 1,
+      name: 'Amy'
+    },
+    {
+      id: 2,
+      name: 'Jordan'
+    },
+    {
+      id: 3,
+      name: 'Natalia'
+    },
+    {
+      id: 4,
+      name: 'John'
     },
   ]
 }

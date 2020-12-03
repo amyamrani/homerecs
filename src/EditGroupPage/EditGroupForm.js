@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIContext from '../APIContext';
 import { withRouter } from 'react-router-dom';
+import '../AddGroupPage/GroupForm.css';
 
 class EditGroupForm extends Component {
   static contextType = APIContext;

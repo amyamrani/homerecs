@@ -6,11 +6,11 @@ class AddProductPage extends Component {
     return (
       <div className='page-container'>
 
-      <section>
-        <h1 className='section-title'>Add New Product</h1>
-      </section>
+        <section>
+          <h1 className='section-title'>Add New Product</h1>
+        </section>
 
-      <AddProductForm />
+        <AddProductForm />
 
       </div>
     );

@@ -7,3 +7,12 @@ nav {
   right: 0;
   z-index: 10;
 }
+
+.nav-items {
+  display: flex;
+  padding: 0 20px;
+}
+
+.nav-items__item {
+  margin-right: 20px;
+}

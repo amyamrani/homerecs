@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
 import APIContext from '../APIContext';
+import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
 
 class Dashboard extends Component {
@@ -17,54 +18,42 @@ class Dashboard extends Component {
         <section>
           <h2 className='section-title'>My Groups</h2>
 
+          {this.context.groups.map(group => (
+            <div key={group.id}>
+              <div>
+                <Link to={`/groups/${group.id}`}>
+                  {group.name}
+                </Link>
+              </div>
+            </div>
+          ))}
+
           <div>
             <Link className='button' to='/groups/new'>Create a New Group</Link>
           </div>
-
-          <hr />
-
-          {this.context.groups.map(group => (
-            <div key={group.id}>
-              <h3>
-                {group.name} - {group.code}
-              </h3>
-
-              <div>
-                <Link className='button' to={`/groups/${group.id}/edit`}>Edit</Link>
-                <button onClick={() => this.context.deleteGroup(group.id)} type='button'>Delete</button>
-              </div>
-
-              <hr />
-            </div>
-          ))}
         </section>
 
 
-        <section>
+        <section className='products-container'>
           <h2 className='section-title'>My Products</h2>
 
           <div>
             <Link className='button' to='/products/new'>Add New Product</Link>
           </div>
 
-          <hr />
-
           {this.context.products.map(product => (
             <div key={product.id}>
-              <p className='category-type'>Category: {product.category}</p>
+              <div className='product-card'>
+                <Product product={product} />
 
-              <h3>
-                <a href={product.url}>{product.name}</a>
-              </h3>
+                <div>
+                  <Link className='button' to={`/products/${product.id}/edit`}>Edit</Link>
+                </div>
 
-              <p>{product.comments}</p>
-
-              <div>
-                <Link className='button' to={`/products/${product.id}/edit`}>Edit</Link>
-                <button onClick={() => this.context.deleteProduct(product.id)} type='button'>Delete</button>
+                <div>
+                  <button className='button' onClick={() => this.context.deleteProduct(product.id)} type='button'>Delete</button>
+                </div>
               </div>
-
-              <hr />
             </div>
           ))}
         </section>
