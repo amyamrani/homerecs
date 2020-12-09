@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIContext from '../APIContext';
 import { withRouter } from 'react-router-dom';
+import config from '../config';
 import '../AddProductPage/AddProductForm.css';
 
 function getRandomInt(max) {
@@ -23,18 +24,37 @@ class EditProductForm extends Component {
 
   submit = (e) => {
     e.preventDefault();
+    this.setState({errorMessage: undefined})
 
-    const updatedProduct = {
-      id: this.props.product.id,
-      user_id: 1,
-      date_added: this.props.product.date_added,
+    const newProduct = {
       name: this.state.name,
       url: this.state.url,
       comments: this.state.comments,
       category: this.state.category,
     };
-    this.context.editProduct(updatedProduct);
-    this.props.history.push('/dashboard');
+
+    const authToken = localStorage.getItem('authToken')
+
+    fetch(`${config.API_BASE_URL}/api/products/${this.props.product.id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${authToken}`,
+      },
+      body: JSON.stringify(newProduct)
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            this.setState({errorMessage: error.error.message})
+          })
+        } else {
+          this.props.history.push('/dashboard');
+        }
+      })
+      .catch(err => {
+        this.setState({errorMessage: 'Please try again.'})
+      });
   }
 
   render() {

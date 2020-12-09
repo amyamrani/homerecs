@@ -63,6 +63,7 @@ class App extends Component {
   login = (user) => {
     localStorage.setItem('authToken', user.token);
     localStorage.setItem('user', user);
+    localStorage.setItem('userId', user.id);
     this.setState({ isLoggedIn: true, user: user });
   }
 
@@ -70,6 +71,7 @@ class App extends Component {
     console.log("IN APP SIGNUP!!", user)
     localStorage.setItem('authToken', user.token);
     localStorage.setItem('user', user);
+    localStorage.setItem('userId', user.id);
     this.setState({ isLoggedIn: true, user: user });
   }
 
@@ -132,9 +134,8 @@ class App extends Component {
                 exact path='/products/:id/edit'
                 render={(routerProps) => {
                   const id = routerProps.match.params.id;
-                  const product = contextValue.products.find(product => product.id === Number(id));
 
-                  return <EditProductPage product={product} />
+                  return <EditProductPage id={id} />
                 }}
               />
 
