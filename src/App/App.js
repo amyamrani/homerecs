@@ -23,8 +23,14 @@ class App extends Component {
     this.state = {
       products: STORE.products,
       groups: STORE.groups,
+      isLoggedIn: undefined,
     }
-}
+  }
+
+  componentDidMount() {
+    const authToken = localStorage.getItem('authToken');
+    this.setState({ isLoggedIn: authToken ? true : false });
+  }
 
   addProduct = (product) => {
     this.setState({ products: [...this.state.products, product] });
@@ -55,11 +61,21 @@ class App extends Component {
   }
 
   login = (user) => {
-    this.setState({ user: user });
+    localStorage.setItem('authToken', user.token);
+    localStorage.setItem('user', user);
+    this.setState({ isLoggedIn: true, user: user });
+  }
+
+  signup = (user) => {
+    console.log("IN APP SIGNUP!!", user)
+    localStorage.setItem('authToken', user.token);
+    localStorage.setItem('user', user);
+    this.setState({ isLoggedIn: true, user: user });
   }
 
   logout = () => {
-    this.setState({ user: undefined });
+    localStorage.removeItem('authToken');
+    this.setState({ isLoggedIn: false, user: undefined });
   }
 
   render() {
@@ -74,7 +90,9 @@ class App extends Component {
       deleteGroup: this.deleteGroup,
       login: this.login,
       logout: this.logout,
+      signup: this.signup,
       user: this.state.user,
+      isLoggedIn: this.state.isLoggedIn,
       product: this.state.product,
     }
 

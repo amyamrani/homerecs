@@ -11,7 +11,9 @@ const APIContext = React.createContext({
   deleteGroup: () => {},
   login: () => {},
   logout: () => {},
+  signup: () => {},
   user: undefined,
+  isLoggedIn: false,
 })
 
 export default APIContext;

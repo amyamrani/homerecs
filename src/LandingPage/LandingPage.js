@@ -50,12 +50,10 @@ class LandingPage extends Component {
         <section>
           <div className='landing-section-content'>
             <h2 className='section-title'>Join Today!</h2>
-
-            <SignupForm />
-
             <p>
-              Or try the {' '}
-              <Link to='/dashboard#'>DEMO</Link>
+              <Link to='/signup'>SIGN UP</Link>
+              {' '} or try the {' '}
+              <Link to='/dashboard'>DEMO</Link>
               {' '} first!
             </p>
           </div>
