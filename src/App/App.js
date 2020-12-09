@@ -5,6 +5,7 @@ import Nav from '../Nav/Nav';
 import LandingPage from '../LandingPage/LandingPage';
 import Dashboard from '../Dashboard/Dashboard';
 import SignupPage from '../SignupPage/SignupPage';
+import LoginPage from '../LoginPage/LoginPage';
 import AddProductPage from '../AddProductPage/AddProductPage';
 import EditProductPage from '../EditProductPage/EditProductPage';
 import AddGroupPage from '../AddGroupPage/AddGroupPage';
@@ -14,7 +15,6 @@ import UserPage from '../UserPage/UserPage';
 import Footer from '../Footer/Footer';
 import './App.css';
 import STORE from '../store';
-
 
 class App extends Component {
   constructor(props) {
@@ -108,10 +108,10 @@ class App extends Component {
                 component={LandingPage}
               />
 
-              {/* <Route
+              <Route
                 exact path='/login'
                 component={LoginPage}
-              /> */}
+              />
 
               <Route
                 exact path='/signup'

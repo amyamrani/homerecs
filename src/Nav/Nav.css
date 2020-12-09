@@ -16,3 +16,16 @@ nav {
 .nav-items__item {
   margin-right: 20px;
 }
+
+.nav-actions {
+  margin-left: auto;
+}
+
+.nav-links__link + .nav-links__link {
+  padding-left: 20px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}

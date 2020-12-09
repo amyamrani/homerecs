@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
+import APIContext from '../APIContext';
 
 class Nav extends Component {
+  static contextType = APIContext;
+
   render() {
     return (
       <nav>
@@ -11,9 +14,29 @@ class Nav extends Component {
             <Link to='/'>Home</Link>
           </div>
 
-          <div className='nav-items__item'>
-            <Link to='/dashboard'>Dashboard</Link>
-          </div>
+          {this.context.isLoggedIn && (
+            <div className='nav-links'>
+              <div className='nav-links__link'>
+                <Link to='/dashboard'>Dashboard</Link>
+              </div>
+
+              <div className='nav-links__link'>
+                <button className='button-clear' onClick={this.context.logout}>Logout</button>
+              </div>
+            </div>
+          )}
+
+          {!this.context.isLoggedIn && (
+            <div className='nav-links'>
+              <div className='nav-links__link'>
+                <Link to='/login'>Login</Link>
+              </div>
+
+              <div className='nav-links__link'>
+                <Link to='/signup'>Sign up</Link>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
     );

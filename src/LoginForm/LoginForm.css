@@ -1,0 +1,24 @@
+.signup-link {
+  font-size: 16px;
+}
+
+.demo-container {
+  text-align: left;
+  margin-top: 20px;
+  font-size: 18px;
+  padding-bottom: 15px;
+}
+
+.demo-label {
+  font-weight: bold;
+}
+
+.demo-credentials-label {
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.login-error-message {
+  color: red;
+  padding-bottom: 10px;
+}
