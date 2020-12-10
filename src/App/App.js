@@ -62,16 +62,13 @@ class App extends Component {
 
   login = (user) => {
     localStorage.setItem('authToken', user.token);
-    localStorage.setItem('user', user);
-    localStorage.setItem('userId', user.id);
+    localStorage.setItem('user', JSON.stringify(user));
     this.setState({ isLoggedIn: true, user: user });
   }
 
   signup = (user) => {
-    console.log("IN APP SIGNUP!!", user)
     localStorage.setItem('authToken', user.token);
     localStorage.setItem('user', user);
-    localStorage.setItem('userId', user.id);
     this.setState({ isLoggedIn: true, user: user });
   }
 
@@ -147,24 +144,17 @@ class App extends Component {
               <Route
                 exact path='/groups/:id'
                 render={(routerProps) => {
-                  const id = routerProps.match.params.id;
-                  const group = contextValue.groups.find(group => group.id === Number(id));
+                  const groupId = routerProps.match.params.id;
 
-                  if (!group) {
-                    return <Redirect to='/dashboard' />
-                  }
-
-                  return <GroupPage group={group} users={STORE.users} />
+                  return <GroupPage groupId={groupId} users={STORE.users} />
                 }}
               />
 
               <Route
                 exact path='/groups/:id/edit'
                 render={(routerProps) => {
-                  const id = routerProps.match.params.id;
-                  const group = contextValue.groups.find(group => group.id === Number(id));
-
-                  return <EditGroupPage group={group} />
+                  const groupId = routerProps.match.params.id;
+                  return <EditGroupPage groupId={groupId} />
                 }}
               />
 

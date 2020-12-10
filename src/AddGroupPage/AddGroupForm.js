@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIContext from '../APIContext';
 import { withRouter } from 'react-router-dom';
+import config from '../config';
 import './GroupForm.css';
 
 function getRandomInt(max) {
@@ -15,43 +16,51 @@ class AddGroupForm extends Component {
 
     this.state = {
       name: '',
-      code: '',
     }
   }
 
   submit = (e) => {
     e.preventDefault();
+    this.setState({errorMessage: undefined})
 
     const newGroup = {
-      id: getRandomInt(1000),
       name: this.state.name,
-      code: this.state.code,
     };
-    this.context.addGroup(newGroup);
-    this.props.history.push('/dashboard');
+
+    const authToken = localStorage.getItem('authToken')
+
+    fetch(`${config.API_BASE_URL}/api/groups`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${authToken}`,
+      },
+      body: JSON.stringify(newGroup)
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            this.setState({errorMessage: error.error.message})
+          })
+        } else {
+          this.props.history.push('/dashboard');
+        }
+      })
+      .catch(err => {
+        this.setState({errorMessage: 'Please try again.'})
+      });
   }
 
   render() {
     return (
       <form className='group-form' onSubmit={this.submit}>
         <div className='form-section'>
-          <label htmlFor='product-name'>Group Name:</label>
+          <label htmlFor='group-name'>Group Name:</label>
           <input
             type='text'
             name='group-name'
             value={this.state.name}
             onChange={(e) => this.setState({name: e.target.value})}
-          />
-        </div>
-
-        <div className='form-section'>
-          <label htmlFor='link'>Group Access Code:</label>
-          <input
-            type='text'
-            name='link'
-            placeholder='Enter group code'
-            value={this.state.code}
-            onChange={(e) => this.setState({code: e.target.value})}
           />
         </div>
 

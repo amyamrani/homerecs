@@ -13,19 +13,44 @@ class Dashboard extends Component {
 
     this.state = {
       products: [],
+      group: undefined,
       error: undefined,
     }
   };
 
   componentDidMount () {
     this.getUserProducts();
+    this.getUserGroup();
   }
 
-  getUserProducts = () => {
-    const id = localStorage.getItem('userId');
+  getUserGroup = () => {
     const authToken = localStorage.getItem('authToken');
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    fetch(`${config.API_BASE_URL}/api/products?user_id=${id}`, {
+    fetch(`${config.API_BASE_URL}/api/groups/${user.group_id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${authToken}`,
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json()
+      })
+      .then((res) => {
+        this.setState({ group: res })
+      })
+      .catch(error => this.setState({ error }))
+  };
+
+  getUserProducts = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    const authToken = localStorage.getItem('authToken')
+
+    fetch(`${config.API_BASE_URL}/api/products?user_id=${user.id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -75,21 +100,22 @@ class Dashboard extends Component {
         </section>
 
         <section>
-          <h2 className='section-title'>My Groups</h2>
+          {this.state.group && (
+            <div>
+              <h2 className='section-title'>My Group</h2>
 
-          {this.context.groups.map(group => (
-            <div key={group.id}>
-              <div>
-                <Link to={`/groups/${group.id}`}>
-                  {group.name}
-                </Link>
-              </div>
+              <Link to={`/groups/${this.state.group.id}`}>
+                {this.state.group.name}
+              </Link>
             </div>
-          ))}
+          )}
 
-          <div>
-            <Link className='button' to='/groups/new'>Create a New Group</Link>
-          </div>
+          {!this.state.group && (
+            <div>
+              <Link className='button' to='/groups/new'>Create a New Group</Link>
+              <Link className='button' to='/groups/join'>Join a Group</Link>
+            </div>
+          )}
         </section>
 
 

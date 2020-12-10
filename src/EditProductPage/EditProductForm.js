@@ -26,7 +26,7 @@ class EditProductForm extends Component {
     e.preventDefault();
     this.setState({errorMessage: undefined})
 
-    const newProduct = {
+    const updatedProduct = {
       name: this.state.name,
       url: this.state.url,
       comments: this.state.comments,
@@ -41,15 +41,15 @@ class EditProductForm extends Component {
         'content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`,
       },
-      body: JSON.stringify(newProduct)
+      body: JSON.stringify(updatedProduct)
     })
       .then(res => {
-        if (!res.ok) {
+        if (res.ok) {
+          this.props.history.push('/dashboard');
+        } else {
           return res.json().then(error => {
             this.setState({errorMessage: error.error.message})
           })
-        } else {
-          this.props.history.push('/dashboard');
         }
       })
       .catch(err => {

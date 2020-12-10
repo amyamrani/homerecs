@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIContext from '../APIContext';
 import { withRouter } from 'react-router-dom';
+import config from '../config';
 import '../AddGroupPage/GroupForm.css';
 
 class EditGroupForm extends Component {
@@ -11,21 +12,41 @@ class EditGroupForm extends Component {
 
     this.state = {
       name: props.group.name || '',
-      code: props.group.code || '',
     }
   }
 
   submit = (e) => {
     e.preventDefault();
+    this.setState({errorMessage: undefined})
 
-    const newGroup = {
-      id: this.props.group.id,
+    const updatedGroup = {
       name: this.state.name,
-      code: this.state.code,
     };
-    this.context.editGroup(newGroup);
-    this.props.history.push('/dashboard');
+
+    const authToken = localStorage.getItem('authToken')
+
+    fetch(`${config.API_BASE_URL}/api/groups/${this.props.group.id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${authToken}`,
+      },
+      body: JSON.stringify(updatedGroup)
+    })
+      .then(res => {
+        if (res.ok) {
+          this.props.history.push(`/groups/${this.props.group.id}`);
+        } else {
+          return res.json().then(error => {
+            this.setState({errorMessage: error.error.message})
+          })
+        }
+      })
+      .catch(err => {
+        this.setState({errorMessage: 'Please try again.'})
+      });
   }
+
 
   render() {
     return (
@@ -40,18 +61,7 @@ class EditGroupForm extends Component {
           />
         </div>
 
-        <div className='form-section'>
-          <label htmlFor='link'>Group Access Code:</label>
-          <input
-            type='text'
-            name='link'
-            placeholder='Enter group code'
-            value={this.state.code}
-            onChange={(e) => this.setState({code: e.target.value})}
-          />
-        </div>
-
-        <button onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
+        <button onClick={() => this.props.history.push(`/groups/${this.props.group.id}`)} type='button'>Cancel</button>
         <button type='submit'>Update</button>
       </form>
     );

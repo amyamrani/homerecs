@@ -43,7 +43,6 @@ class SignupForm extends Component {
         this.context.signup(res);
       })
       .catch(err => {
-        console.log("WHAT IS THE PROBLEM", err)
         this.setState({errorMessage: 'Email and password are required.'})
       });
 
