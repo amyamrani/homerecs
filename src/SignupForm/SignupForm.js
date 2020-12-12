@@ -86,7 +86,7 @@ class SignupForm extends Component {
           <label htmlFor='username'>Email</label>
           <input
             required
-            type='text'
+            type='email'
             name='username'
             id='username'
             value={this.state.email}

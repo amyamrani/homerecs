@@ -53,7 +53,7 @@ class LandingPage extends Component {
             <p>
               <Link to='/signup'>SIGN UP</Link>
               {' '} or try the {' '}
-              <Link to='/dashboard'>DEMO</Link>
+              <Link to='/login'>DEMO</Link>
               {' '} first!
             </p>
           </div>

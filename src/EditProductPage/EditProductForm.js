@@ -4,10 +4,6 @@ import { withRouter } from 'react-router-dom';
 import config from '../config';
 import '../AddProductPage/AddProductForm.css';
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
 class EditProductForm extends Component {
   static contextType = APIContext;
 
@@ -62,18 +58,27 @@ class EditProductForm extends Component {
       <form className='product-form' onSubmit={this.submit}>
         <div className='form-section'>
           <label htmlFor='product-title'>Category:</label>
-          <select value={this.state.category} onChange={(e) => this.setState({ category: e.target.value })}>
-            <option value=''>Select One</option>
-            <option value='kitchen'>Kitchen</option>
-            <option value='dining-room'>Dining Room</option>
-            <option value='living-room'>Living Room</option>
-            <option value='bedroom'>Bedroom</option>
+          <select
+            required
+            value={this.state.category}
+            onChange={(e) => this.setState({ category: e.target.value })}
+          >
+            <option value=''>Select</option>
+            <option value='Living Room'>Living Room</option>
+            <option value='Dining Room'>Dining Room</option>
+            <option value='Kitchen'>Kitchen</option>
+            <option value='Bedroom'>Bedroom</option>
+            <option value='Bathroom'>Bathroom</option>
+            <option value='Laundry Room'>Laundry Room</option>
+            <option value='Outdoor/Patio'>Outdoor/Patio</option>
+            <option value='Garage'>Garage</option>
           </select>
         </div>
 
         <div className='form-section'>
           <label htmlFor='product-name'>Product Name:</label>
           <input
+            required
             type='text'
             name='name'
             onChange={(e) => this.setState({ name: e.target.value })}
@@ -84,7 +89,8 @@ class EditProductForm extends Component {
         <div className='form-section'>
           <label htmlFor='link'>Link:</label>
           <input
-            type='text'
+            required
+            type='url'
             name='link'
             placeholder='Enter URL'
             onChange={(e) => this.setState({ url: e.target.value })}
@@ -95,6 +101,7 @@ class EditProductForm extends Component {
         <div className='form-section'>
           <label htmlFor='days'>Comments:</label>
           <input
+            required
             className='comment-input'
             type='text'
             name='comment'

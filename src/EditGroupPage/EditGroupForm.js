@@ -47,13 +47,13 @@ class EditGroupForm extends Component {
       });
   }
 
-
   render() {
     return (
       <form className='group-form' onSubmit={this.submit}>
         <div className='form-section'>
-          <label htmlFor='product-name'>Group Name:</label>
+          <label htmlFor='group-name'>Group Name:</label>
           <input
+            required
             type='text'
             name='group-name'
             value={this.state.name}
