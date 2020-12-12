@@ -4,10 +4,6 @@ import { withRouter } from 'react-router-dom';
 import config from '../config';
 import './GroupForm.css';
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
 class AddGroupForm extends Component {
   static contextType = APIContext;
 
@@ -37,18 +33,18 @@ class AddGroupForm extends Component {
       },
       body: JSON.stringify(newGroup)
     })
-      .then(res => {
-        if (!res.ok) {
-          return res.json().then(error => {
-            this.setState({errorMessage: error.error.message})
-          })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          this.setState({errorMessage: data.error.message})
         } else {
+          const user = JSON.parse(localStorage.getItem('user'));
+          const newUser = {...user, group_id: data.id}
+          localStorage.setItem('user', JSON.stringify(newUser));
           this.props.history.push('/dashboard');
         }
       })
-      .catch(err => {
-        this.setState({errorMessage: 'Please try again.'})
-      });
+        .catch(err => this.setState({errorMessage: 'Please try again.'}));
   }
 
   render() {
@@ -57,6 +53,7 @@ class AddGroupForm extends Component {
         <div className='form-section'>
           <label htmlFor='group-name'>Group Name:</label>
           <input
+            required
             type='text'
             name='group-name'
             value={this.state.name}
