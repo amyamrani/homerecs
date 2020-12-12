@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import EditProductForm from './EditProductForm';
+import { Redirect } from 'react-router-dom';
 import APIContext from '../APIContext';
+import EditProductForm from './EditProductForm';
 import config from '../config';
 
 class EditProductPage extends Component {
@@ -42,6 +43,10 @@ class EditProductPage extends Component {
   };
 
   render() {
+    if (this.context.isLoggedIn === false) {
+      return <Redirect to='/' />
+    }
+
     return (
       <div className='page-container'>
 

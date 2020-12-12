@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import APIContext from '../APIContext';
 import EditGroupForm from './EditGroupForm';
 import config from '../config';
 
 class EditGroupPage extends Component {
+  static contextType = APIContext;
+
   constructor(props) {
     super(props);
 
@@ -39,6 +43,10 @@ class EditGroupPage extends Component {
   };
 
   render() {
+    if (this.context.isLoggedIn === false) {
+      return <Redirect to='/' />
+    }
+
     const { group } = this.state;
 
     return (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Dashboard.css';
 import APIContext from '../APIContext';
 import Product from '../Product/Product';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import config from '../config';
 
 class Dashboard extends Component {
@@ -27,6 +27,10 @@ class Dashboard extends Component {
     const authToken = localStorage.getItem('authToken');
     const user = JSON.parse(localStorage.getItem('user'));
 
+    if (!user || !user.group_id) {
+      return;
+    }
+
     fetch(`${config.API_BASE_URL}/api/groups/${user.group_id}`, {
       method: 'GET',
       headers: {
@@ -49,6 +53,10 @@ class Dashboard extends Component {
   getUserProducts = () => {
     const user = JSON.parse(localStorage.getItem('user'))
     const authToken = localStorage.getItem('authToken')
+
+    if (!user) {
+      return;
+    }
 
     fetch(`${config.API_BASE_URL}/api/products?user_id=${user.id}`, {
       method: 'GET',
@@ -92,6 +100,10 @@ class Dashboard extends Component {
   };
 
   render() {
+    if (this.context.isLoggedIn === false) {
+      return <Redirect to='/' />
+    }
+
     return (
       <div className='page-container'>
 
