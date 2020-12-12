@@ -9,6 +9,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import AddProductPage from '../AddProductPage/AddProductPage';
 import EditProductPage from '../EditProductPage/EditProductPage';
 import AddGroupPage from '../AddGroupPage/AddGroupPage';
+import JoinGroupPage from '../JoinGroupPage/JoinGroupPage';
 import EditGroupPage from '../EditGroupPage/EditGroupPage';
 import GroupPage from '../GroupPage/GroupPage';
 import UserPage from '../UserPage/UserPage';
@@ -99,6 +100,11 @@ class App extends Component {
               <Route
                 exact path='/groups/new'
                 component={AddGroupPage}
+              />
+
+              <Route
+                exact path='/groups/join'
+                component={JoinGroupPage}
               />
 
               <Route
