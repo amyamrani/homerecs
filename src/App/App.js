@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import APIContext from '../APIContext';
 import Nav from '../Nav/Nav';
 import LandingPage from '../LandingPage/LandingPage';
@@ -14,15 +14,12 @@ import GroupPage from '../GroupPage/GroupPage';
 import UserPage from '../UserPage/UserPage';
 import Footer from '../Footer/Footer';
 import './App.css';
-import STORE from '../store';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      products: STORE.products,
-      groups: STORE.groups,
       isLoggedIn: undefined,
     }
   }
@@ -30,34 +27,6 @@ class App extends Component {
   componentDidMount() {
     const authToken = localStorage.getItem('authToken');
     this.setState({ isLoggedIn: authToken ? true : false });
-  }
-
-  addProduct = (product) => {
-    this.setState({ products: [...this.state.products, product] });
-  }
-
-  editProduct = (product) => {
-    const newProducts = this.state.products.map(p => p.id === product.id ? product : p);
-    this.setState({ products: newProducts });
-  }
-
-  deleteProduct = (id) => {
-    const newProducts = this.state.products.filter(p => p.id !== id);
-    this.setState({ products: newProducts });
-  }
-
-  addGroup = (group) => {
-    this.setState({ groups: [...this.state.groups, group] });
-  }
-
-  editGroup = (group) => {
-    const newGroups = this.state.groups.map(g => g.id === group.id ? group : g);
-    this.setState({ groups: newGroups });
-  }
-
-  deleteGroup = (id) => {
-    const newGroups = this.state.groups.filter(g => g.id !== id);
-    this.setState({ groups: newGroups });
   }
 
   login = (user) => {
@@ -68,31 +37,22 @@ class App extends Component {
 
   signup = (user) => {
     localStorage.setItem('authToken', user.token);
-    localStorage.setItem('user', user);
+    localStorage.setItem('user', JSON.stringify(user));
     this.setState({ isLoggedIn: true, user: user });
   }
 
   logout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
     this.setState({ isLoggedIn: false, user: undefined });
   }
 
   render() {
     const contextValue = {
-      products: this.state.products,
-      addProduct: this.addProduct,
-      editProduct: this.editProduct,
-      deleteProduct: this.deleteProduct,
-      groups: this.state.groups,
-      addGroup: this.addGroup,
-      editGroup: this.editGroup,
-      deleteGroup: this.deleteGroup,
       login: this.login,
       logout: this.logout,
       signup: this.signup,
-      user: this.state.user,
       isLoggedIn: this.state.isLoggedIn,
-      product: this.state.product,
     }
 
     return (
@@ -146,7 +106,7 @@ class App extends Component {
                 render={(routerProps) => {
                   const groupId = routerProps.match.params.id;
 
-                  return <GroupPage groupId={groupId} users={STORE.users} />
+                  return <GroupPage groupId={groupId} />
                 }}
               />
 
@@ -162,10 +122,8 @@ class App extends Component {
                 exact path='/users/:id'
                 render={(routerProps) => {
                   const id = routerProps.match.params.id;
-                  const user = STORE.users.find(user => user.id === Number(id));
-                  const products = contextValue.products.filter(product => product.user_id === user.id);
 
-                  return <UserPage user={user} products={products} />
+                  return <UserPage userId={id} />
                 }}
               />
             </Switch>
