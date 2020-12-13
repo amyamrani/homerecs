@@ -54,8 +54,8 @@ class AddGroupForm extends Component {
           <label htmlFor='group-name'>Group Name:</label>
           <input
             required
+            id='group-name'
             type='text'
-            name='group-name'
             value={this.state.name}
             onChange={(e) => this.setState({name: e.target.value})}
           />

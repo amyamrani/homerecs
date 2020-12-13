@@ -52,10 +52,11 @@ class JoinGroupForm extends Component {
     return (
       <form className='group-form' onSubmit={this.join}>
         <div className='form-section'>
-          <label htmlFor='group-name'>Group Code:</label>
+          <label htmlFor='group-code'>Group Code:</label>
           <input
+            required
+            id='group-code'
             type='text'
-            name='code'
             value={this.state.code}
             onChange={(e) => this.setState({code: e.target.value})}
           />

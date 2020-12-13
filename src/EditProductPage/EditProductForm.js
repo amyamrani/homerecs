@@ -57,9 +57,10 @@ class EditProductForm extends Component {
     return (
       <form className='product-form' onSubmit={this.submit}>
         <div className='form-section'>
-          <label htmlFor='product-title'>Category:</label>
+          <label htmlFor='product-category'>Category:</label>
           <select
             required
+            id='product-category'
             value={this.state.category}
             onChange={(e) => this.setState({ category: e.target.value })}
           >
@@ -79,19 +80,19 @@ class EditProductForm extends Component {
           <label htmlFor='product-name'>Product Name:</label>
           <input
             required
+            id='product-name'
             type='text'
-            name='name'
             onChange={(e) => this.setState({ name: e.target.value })}
             value={this.state.name}
           />
         </div>
 
         <div className='form-section'>
-          <label htmlFor='link'>Link:</label>
+          <label htmlFor='product-link'>Link:</label>
           <input
             required
+            id='product-link'
             type='url'
-            name='link'
             placeholder='Enter URL'
             onChange={(e) => this.setState({ url: e.target.value })}
             value={this.state.url}
@@ -99,12 +100,11 @@ class EditProductForm extends Component {
         </div>
 
         <div className='form-section'>
-          <label htmlFor='days'>Comments:</label>
+          <label htmlFor='product-comments'>Comments:</label>
           <input
             required
-            className='comment-input'
+            id='product-comments'
             type='text'
-            name='comment'
             onChange={(e) => this.setState({ comments: e.target.value })}
             value={this.state.comments}
           />
