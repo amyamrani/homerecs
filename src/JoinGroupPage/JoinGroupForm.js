@@ -50,8 +50,8 @@ class JoinGroupForm extends Component {
 
   render() {
     return (
-      <form className='group-form' onSubmit={this.join}>
-        <div className='form-section'>
+      <form className='form' onSubmit={this.join}>
+        <div className='form-group'>
           <label htmlFor='group-code'>Group Code:</label>
           <input
             required
@@ -62,8 +62,10 @@ class JoinGroupForm extends Component {
           />
         </div>
 
-        <button onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
-        <button type='submit'>Save</button>
+        <div className="form-buttons">
+          <button className="button" onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
+          <button className="button button-primary" type='submit'>Save</button>
+        </div>
       </form>
     );
   }

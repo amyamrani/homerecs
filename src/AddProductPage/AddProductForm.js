@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import APIContext from '../APIContext';
 import { withRouter } from 'react-router-dom';
 import config from '../config';
-import './AddProductForm.css';
 
 class AddProductForm extends Component {
   static contextType = APIContext;
@@ -55,28 +54,38 @@ class AddProductForm extends Component {
 
   render() {
     return (
-      <form className='product-form' onSubmit={this.submit}>
-        <div className='form-section'>
+      <form className='form' onSubmit={this.submit}>
+        <div className='form-group'>
           <label htmlFor='product-category'>Category:</label>
-          <select
-            required
-            id='product-category'
-            value={this.state.category}
-            onChange={(e) => this.setState({ category: e.target.value })}
-          >
-            <option value=''>Select</option>
-            <option value='Living Room'>Living Room</option>
-            <option value='Dining Room'>Dining Room</option>
-            <option value='Kitchen'>Kitchen</option>
-            <option value='Bedroom'>Bedroom</option>
-            <option value='Bathroom'>Bathroom</option>
-            <option value='Laundry Room'>Laundry Room</option>
-            <option value='Outdoor/Patio'>Outdoor/Patio</option>
-            <option value='Garage'>Garage</option>
-          </select>
+
+          <div className='dropdown'>
+            <select
+              required
+              id='product-category'
+              value={this.state.category}
+              onChange={(e) => this.setState({ category: e.target.value })}
+            >
+              <option value=''>Select</option>
+              <option value='Living Room'>Living Room</option>
+              <option value='Dining Room'>Dining Room</option>
+              <option value='Kitchen'>Kitchen</option>
+              <option value='Bedroom'>Bedroom</option>
+              <option value='Bathroom'>Bathroom</option>
+              <option value='Laundry Room'>Laundry Room</option>
+              <option value='Outdoor/Patio'>Outdoor/Patio</option>
+              <option value='Garage'>Garage</option>
+            </select>
+
+            <div className='dropdown-icon'>
+              <svg className='icon' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
         </div>
 
-        <div className='form-section'>
+
+        <div className='form-group'>
           <label htmlFor='product-name'>Product Name:</label>
           <input
             required
@@ -87,7 +96,7 @@ class AddProductForm extends Component {
           />
         </div>
 
-        <div className='form-section'>
+        <div className='form-group'>
           <label htmlFor='product-link'>Link:</label>
           <input
             required
@@ -99,7 +108,7 @@ class AddProductForm extends Component {
           />
         </div>
 
-        <div className='form-section'>
+        <div className='form-group'>
           <label htmlFor='product-comments'>Comments:</label>
           <input
             required
@@ -110,8 +119,10 @@ class AddProductForm extends Component {
           />
         </div>
 
-        <button onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
-        <button type='submit'>Save</button>
+        <div className="form-actions">
+          <button className="button" onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
+          <button className="button button-primary" type='submit'>Save</button>
+        </div>
       </form>
     );
   }

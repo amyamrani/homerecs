@@ -9,7 +9,7 @@ class Product extends Component {
         <p className='category-type'>Category: {product.category}</p>
 
         <h3>
-          <a href={product.url} target='_blank'>{product.name}</a>
+          <a href={product.url} target='_blank' rel="noreferrer">{product.name}</a>
         </h3>
 
         <p>{product.comments}</p>

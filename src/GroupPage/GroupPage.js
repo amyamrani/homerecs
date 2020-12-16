@@ -118,9 +118,9 @@ class GroupPage extends Component {
           <p>Invite code: {group.code}</p>
 
           <div>
-            <Link className='button' to={`/groups/${group.id}/edit`}>Edit</Link>
-          </div>
-          <div>
+            <Link className='button button-primary' to={`/groups/${group.id}/edit`}>Edit</Link>
+          {/* </div>
+          <div> */}
             <button className='button' onClick={this.leaveGroup} type='button'>Leave Group</button>
           </div>
         </section>

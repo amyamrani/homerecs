@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import APIContext from '../APIContext';
 import { withRouter } from 'react-router-dom';
 import config from '../config';
-import './GroupForm.css';
 
 class AddGroupForm extends Component {
   static contextType = APIContext;
@@ -49,8 +48,8 @@ class AddGroupForm extends Component {
 
   render() {
     return (
-      <form className='group-form' onSubmit={this.submit}>
-        <div className='form-section'>
+      <form className='form' onSubmit={this.submit}>
+        <div className='form-group'>
           <label htmlFor='group-name'>Group Name:</label>
           <input
             required
@@ -61,8 +60,10 @@ class AddGroupForm extends Component {
           />
         </div>
 
-        <button onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
-        <button type='submit'>Save</button>
+        <div className="form-actions">
+          <button className="button" onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
+          <button className="button button-primary" type='submit'>Save</button>
+        </div>
       </form>
     );
   }

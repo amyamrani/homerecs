@@ -49,7 +49,7 @@ class LoginForm extends Component {
     }
 
     return (
-      <form className='signup-form' onSubmit={this.handleLogin}>
+      <form className='form' onSubmit={this.handleLogin}>
         {this.state.errorMessage && (
           <div className='login-error-message'>{this.state.errorMessage}</div>
         )}
@@ -79,11 +79,13 @@ class LoginForm extends Component {
         </div>
 
         <div className='form-group'>
-          <button>Login</button>
+          <div>
+            <button className='button button-primary'>Login</button>
+          </div>
         </div>
 
         <div>
-          <Link to='/signup' className='signup-link'>Don't have an account? Sign up here.</Link>
+          <Link to='/signup' className='link'>Don't have an account? Sign up here.</Link>
         </div>
 
         <div className='demo-container'>

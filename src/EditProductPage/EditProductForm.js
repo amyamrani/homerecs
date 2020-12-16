@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import APIContext from '../APIContext';
 import { withRouter } from 'react-router-dom';
 import config from '../config';
-import '../AddProductPage/AddProductForm.css';
 
 class EditProductForm extends Component {
   static contextType = APIContext;
@@ -55,8 +54,8 @@ class EditProductForm extends Component {
 
   render() {
     return (
-      <form className='product-form' onSubmit={this.submit}>
-        <div className='form-section'>
+      <form className='form' onSubmit={this.submit}>
+        <div className='form-group'>
           <label htmlFor='product-category'>Category:</label>
           <select
             required
@@ -76,7 +75,7 @@ class EditProductForm extends Component {
           </select>
         </div>
 
-        <div className='form-section'>
+        <div className='form-group'>
           <label htmlFor='product-name'>Product Name:</label>
           <input
             required
@@ -87,7 +86,7 @@ class EditProductForm extends Component {
           />
         </div>
 
-        <div className='form-section'>
+        <div className='form-group'>
           <label htmlFor='product-link'>Link:</label>
           <input
             required
@@ -99,7 +98,7 @@ class EditProductForm extends Component {
           />
         </div>
 
-        <div className='form-section'>
+        <div className='form-group'>
           <label htmlFor='product-comments'>Comments:</label>
           <input
             required
@@ -110,8 +109,10 @@ class EditProductForm extends Component {
           />
         </div>
 
-        <button onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
-        <button type='submit'>Save</button>
+        <div className="form-actions">
+          <button className="button" onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
+          <button className="button button-primary" type='submit'>Save</button>
+        </div>
       </form>
     );
   }

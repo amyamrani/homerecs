@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './SignupForm.css';
 import { Link, Redirect } from 'react-router-dom';
 import APIContext from '../APIContext';
 import config from '../config';
@@ -55,7 +54,7 @@ class SignupForm extends Component {
     }
 
     return (
-      <form className='signup-form' onSubmit={this.handleSubmit}>
+      <form className='form' onSubmit={this.handleSubmit}>
         {this.state.errorMessage && (
           <div>{this.state.errorMessage}</div>
         )}
@@ -106,11 +105,13 @@ class SignupForm extends Component {
         </div>
 
         <div className='form-group'>
-          <button>Sign up</button>
+          <button className='button button-primary'>
+            Sign up
+          </button>
         </div>
 
         <div className='form-group'>
-          <Link to='/login' className='login-link'>Already have an account? Login here.</Link>
+          <Link to='/login' className='link'>Already have an account? Login here.</Link>
         </div>
       </form>
     )

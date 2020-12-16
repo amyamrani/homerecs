@@ -116,7 +116,7 @@ class Dashboard extends Component {
             <div>
               <h2 className='section-title'>My Group</h2>
 
-              <Link to={`/groups/${this.state.group.id}`}>
+              <Link className='button button-primary' to={`/groups/${this.state.group.id}`}>
                 {this.state.group.name}
               </Link>
             </div>
@@ -124,8 +124,8 @@ class Dashboard extends Component {
 
           {!this.state.group && (
             <div>
-              <Link className='button' to='/groups/new'>Create a New Group</Link>
-              <Link className='button' to='/groups/join'>Join a Group</Link>
+              <Link className='button button-primary' to='/groups/new'>Create a New Group</Link>
+              <Link className='button button-primary' to='/groups/join'>Join a Group</Link>
             </div>
           )}
         </section>
@@ -135,7 +135,7 @@ class Dashboard extends Component {
           <h2 className='section-title'>My Products</h2>
 
           <div>
-            <Link className='button' to='/products/new'>Add New Product</Link>
+            <Link className='button button-primary' to='/products/new'>Add New Product</Link>
           </div>
 
           {this.state.products.map(product => (
@@ -144,10 +144,7 @@ class Dashboard extends Component {
                 <Product product={product} />
 
                 <div>
-                  <Link className='button' to={`/products/${product.id}/edit`}>Edit</Link>
-                </div>
-
-                <div>
+                  <Link className='button button-primary' to={`/products/${product.id}/edit`}>Edit</Link>
                   <button className='button' onClick={() => this.deleteProduct(product.id)} type='button'>Delete</button>
                 </div>
               </div>

@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
       <footer>
-        &copy; HomeRecs {(new Date().getFullYear())}
+        &copy; HomeRecs {(new Date().getFullYear())}. All rights reserved.
       </footer>
     );
   }
