@@ -1,31 +1,19 @@
-nav {
-  padding: 1% 0;
-  background-color: rgb(212, 210, 210);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
-
-.nav-items {
+nav.nav {
+  padding: 20px 24px;
+  text-align: left;
+  background-color: #F9FAFB;
   display: flex;
-  padding: 0 20px;
+  justify-content: space-between;
 }
 
-.nav-items__item {
-  margin-right: 20px;
+.logo-icon svg {
+  display: inline;
+  color: #4338CA;
+  height: 30px;
+  width: auto;
 }
 
-.nav-actions {
-  margin-left: auto;
-}
-
-.nav-links__link + .nav-links__link {
-  padding-left: 20px;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
+.logo-icon svg + .logo-icon svg {
+  margin-left: -6px;
+  margin-top: -8px;
 }
