@@ -76,20 +76,19 @@ class UserPage extends Component {
     return (
       <div className='page-container'>
         {user && (
-          <section>
+          <div>
             <h1 className='section-title'>{user.first_name} {user.last_name}'s <br /> Recommendations</h1>
-          </section>
+          </div>
         )}
 
         {products && (
-          <section>
+          <div className='product-list'>
             {products.map(product => (
               <div key={product.id}>
                 <Product product={product} />
-                <hr />
               </div>
             ))}
-          </section>
+          </div>
         )}
       </div>
     );

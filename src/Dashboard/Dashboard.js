@@ -28,6 +28,7 @@ class Dashboard extends Component {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (!user || !user.group_id) {
+      this.setState({ group: null })
       return;
     }
 
@@ -107,50 +108,62 @@ class Dashboard extends Component {
     return (
       <div className='page-container'>
 
-        <section>
-          <h1 className='section-title'>Dashboard</h1>
-        </section>
+        <div className='page-header'>
+          <div className='page-section'>
+            <div className='page-title'>
+              <h1>Dashboard</h1>
 
-        <section>
-          {this.state.group && (
-            <div>
-              <h2 className='section-title'>My Group</h2>
-
-              <Link className='button button-primary' to={`/groups/${this.state.group.id}`}>
-                {this.state.group.name}
-              </Link>
+              {this.state.group === null && (
+                <div>
+                  <Link className='button button-primary' to='/groups/new'>Create a New Group</Link>
+                  <Link className='button' to='/groups/join'>Join a Group</Link>
+                </div>
+              )}
             </div>
-          )}
 
-          {!this.state.group && (
-            <div>
-              <Link className='button button-primary' to='/groups/new'>Create a New Group</Link>
-              <Link className='button button-primary' to='/groups/join'>Join a Group</Link>
-            </div>
-          )}
-        </section>
-
-
-        <section className='products-container'>
-          <h2 className='section-title'>My Products</h2>
-
-          <div>
-            <Link className='button button-primary' to='/products/new'>Add New Product</Link>
-          </div>
-
-          {this.state.products.map(product => (
-            <div key={product.id}>
-              <div className='product-card'>
-                <Product product={product} />
+            {this.state.group && (
+              <div className='current-group'>
+                <span className='current-group-label'>My Group: </span>
 
                 <div>
-                  <Link className='button button-primary' to={`/products/${product.id}/edit`}>Edit</Link>
-                  <button className='button' onClick={() => this.deleteProduct(product.id)} type='button'>Delete</button>
+                  <Link className='link-xl' to={`/groups/${this.state.group.id}`}>
+                    {this.state.group.name}
+                  </Link>
                 </div>
               </div>
+            )}
+          </div>
+        </div>
+
+        <div className='products-container'>
+          <div className='page-section'>
+            <div className='page-title'>
+              <h2>My Products</h2>
+
+              <div className='page-title-buttons'>
+                <Link className='button button-primary' to='/products/new'>
+                  <svg className="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </Link>
+              </div>
             </div>
-          ))}
-        </section>
+
+            <div className='product-list'>
+              {this.state.products.map(product => (
+                <div key={product.id}>
+                  <div className=''>
+                    <Product
+                      product={product}
+                      onDelete={() => this.deleteProduct(product.id)}
+                      editUrl={`/products/${product.id}/edit`}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

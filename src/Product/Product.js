@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './Product.css';
 
 class Product extends Component {
   render() {
-    const { product } = this.props;
+    const { product, onDelete, editUrl } = this.props;
 
     return (
-      <div>
-        <p className='category-type'>Category: {product.category}</p>
+      <div className='product'>
+        <div className='product-body'>
+          <div className='product-title'>
+            <a href={product.url} target='_blank' rel="noreferrer">{product.name}</a>
+            <span className='category-type'>{product.category}</span>
+          </div>
 
-        <h3>
-          <a href={product.url} target='_blank' rel="noreferrer">{product.name}</a>
-        </h3>
+          <div className='product-comments'>
+            {product.comments}
+          </div>
+        </div>
 
-        <p>{product.comments}</p>
+        {onDelete && (
+          <div className='product-buttons'>
+            <Link className='button button-primary' to={editUrl}>Edit</Link>
+            <button className='button' onClick={onDelete} type='button'>Delete</button>
+          </div>
+        )}
       </div>
     );
   }
