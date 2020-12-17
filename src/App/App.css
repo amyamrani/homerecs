@@ -30,12 +30,16 @@ h1, h2, h3 {
 }
 
 section {
-  min-height: 200px;
   padding: 30px 15px;
 }
 
 .section-title {
   padding: 30px 0px;
+  margin-top: 0;
+}
+
+.link {
+  font-size: 16px;
 }
 
 .form {
@@ -149,6 +153,13 @@ section {
   border-radius: 6px;
   color: #4F46E5;
   background-color: #ffffff;
+  box-shadow: 0 5px 10px -10px rgba(31, 18, 53, 0.6);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 .button:hover {
@@ -165,8 +176,6 @@ section {
 }
 
 .button.button-xl {
-  width: 100%;
-  display: flex;
   padding-left: 32px;
   padding-right: 32px;
   padding-top: 16px;

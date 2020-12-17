@@ -1,0 +1,157 @@
+.hero {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 448px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 64px;
+  padding-bottom: 56px;
+}
+
+.hero-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.hero-title-color{
+  color: #4338CA;
+}
+
+.hero-subtitle {
+  margin-top: 15px;
+  color: #6B7280;
+  font-size: 16px;
+}
+
+.hero-buttons {
+  margin-top: 25px;
+  padding-bottom: 10px;
+}
+
+.hero-buttons .button-xl {
+  width: 100%;
+  margin-bottom: 10px;
+  display: block;
+}
+
+@media screen and (min-width:480px) {
+  .hero-title {
+    font-size: 48px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .hero-buttons .button-xl {
+    width: unset;
+    margin-bottom: unset;
+    display: unset;
+  }
+}
+
+@media screen and (min-width:800px) {
+  .hero {
+    max-width: 768px;
+  }
+
+  .hero-title {
+    font-size: 60px;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+  }
+}
+
+.featured-section {
+  max-width: 1280px;
+  padding: 25px;
+  padding-bottom: 55px;
+  margin: 0 auto;
+}
+
+.featured-section-box {
+  background-color: #4338CA;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 32px;
+  color: white;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-section-iamge {
+  min-height: 400px;
+}
+
+.featured-section-box-half {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.featured-section-box-half:first-of-type {
+  padding-bottom: 32px;
+}
+
+.featured-section-box-half + .featured-section-box-half {
+  padding-left: 10px;
+}
+
+.featured-section-title {
+  font-size: 36px;
+  font-weight: bold;
+  padding-bottom: 30px;
+  line-height: 40px;
+}
+
+.featured-section-image img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.info-item {
+  display: flex;
+}
+
+.info-item + .info-item {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.info-item-text {
+  color: #C7D2FE;
+  line-height: 24px;
+  font-size: 18px;
+}
+
+.info-item-icon {
+  margin-right: 15px;
+}
+
+.icon-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+  background-color: white;
+  color: #6366F1;
+}
+
+.icon-block svg {
+  height: 24px;
+  width: 24px;
+}
+
+@media screen and (min-width:800px) {
+  .featured-section-box {
+    flex-direction: row;
+  }
+
+  .featured-section-content {
+    padding: 32px;
+  }
+}
