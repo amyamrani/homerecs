@@ -115,8 +115,8 @@ class Dashboard extends Component {
 
               {this.state.group === null && (
                 <div>
-                  <Link className='button button-primary' to='/groups/new'>Create a New Group</Link>
-                  <Link className='button' to='/groups/join'>Join a Group</Link>
+                  <Link className='button button-primary' to='/groups/new'>Create Group</Link>
+                  <Link className='button' to='/groups/join'>Join Group</Link>
                 </div>
               )}
             </div>
@@ -135,33 +135,29 @@ class Dashboard extends Component {
           </div>
         </div>
 
-        <div className='products-container'>
-          <div className='page-section'>
-            <div className='page-title'>
-              <h2>My Products</h2>
+        <div className='page-section'>
+          <div className='page-subtitle'>
+            <h2>My Products</h2>
 
-              <div className='page-title-buttons'>
-                <Link className='button button-primary' to='/products/new'>
-                  <svg className="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </Link>
+            <div className='page-subtitle-buttons'>
+              <Link className='button button-primary' to='/products/new'>
+                <svg className="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+
+          <div className='product-list'>
+            {this.state.products.map(product => (
+              <div key={product.id}>
+                <Product
+                  product={product}
+                  onDelete={() => this.deleteProduct(product.id)}
+                  editUrl={`/products/${product.id}/edit`}
+                />
               </div>
-            </div>
-
-            <div className='product-list'>
-              {this.state.products.map(product => (
-                <div key={product.id}>
-                  <div className=''>
-                    <Product
-                      product={product}
-                      onDelete={() => this.deleteProduct(product.id)}
-                      editUrl={`/products/${product.id}/edit`}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </div>
