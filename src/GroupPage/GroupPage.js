@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import APIContext from '../APIContext';
 import config from '../config';
 import { withRouter } from 'react-router-dom';
+import './GroupPage.css';
 
 class GroupPage extends Component {
   static contextType = APIContext;
@@ -112,38 +113,52 @@ class GroupPage extends Component {
     return (
       <div className='page-container'>
 
-        <section>
-          <h1 className='section-title'>{group.name}</h1>
+        <div className='page-header'>
+          <div className='page-section'>
+            <div className='page-title'>
+              <h1>{group.name}</h1>
 
-          <p>Invite code: {group.code}</p>
-
-          <div>
-            <Link className='button button-primary' to={`/groups/${group.id}/edit`}>Edit</Link>
-          {/* </div>
-          <div> */}
-            <button className='button' onClick={this.leaveGroup} type='button'>Leave Group</button>
-          </div>
-        </section>
-
-        <section>
-          <h2>Group Users</h2>
-
-          {users.map(user => (
-            <div key={user.id}>
-              {user.id === currentUser.id && (
-                <Link to={'/dashboard'}>
-                  {user.first_name} {user.last_name}
-                </Link>
-              )}
-
-              {user.id !== currentUser.id && (
-                <Link to={`/users/${user.id}`}>
-                  {user.first_name} {user.last_name}
-                </Link>
-              )}
+              <div>
+                <Link className='button button-primary' to={`/groups/${group.id}/edit`}>Edit</Link>
+                <button className='button' onClick={this.leaveGroup} type='button'>Leave Group</button>
+              </div>
             </div>
-          ))}
-        </section>
+
+            {this.state.group && (
+              <div className='current-group'>
+                <div className='current-group-label'>
+                  Invite code:
+                </div>
+                <div className='bubble'>{group.code}</div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div>
+
+          <div className='page-section'>
+            <div className='page-subtitle'>
+              <h2>Group Members</h2>
+            </div>
+
+            <div className='user-boxes'>
+              {users.filter(user => user.id != currentUser.id).map(user => (
+                <div key={user.id} className='user-box'>
+                  <div className='user-box-initials'>
+                    {user.first_name[0]}{user.last_name[0]}
+                  </div>
+
+                  <div className='user-box-details'>
+                    <Link to={`/users/${user.id}`}>
+                      {user.first_name} {user.last_name}
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

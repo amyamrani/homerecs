@@ -23,20 +23,6 @@
   padding-right: 8px;
 }
 
-@media screen and (min-width:768px) {
-  .page-section {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
-
-@media screen and (min-width:1536px) {
-  .page-section {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-}
-
 .page-header {
   border-top: 1px solid rgba(0,0,0,.1);
   background: white;
@@ -50,15 +36,39 @@
 
 .page-title {
   display: flex;
+  justify-content: left;
+  flex-direction: column-reverse;
+}
+
+.page-subtitle {
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
-.page-header .page-title {
-  justify-content: space-between;
+.page-subtitle-buttons {
+  margin-left: 15px;
 }
 
-.page-title-buttons {
-  margin-left: 15px;
+@media screen and (min-width:480px) {
+  .page-title {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+@media screen and (min-width:768px) {
+  .page-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media screen and (min-width:1536px) {
+  .page-section {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 h1 {
@@ -188,14 +198,11 @@ h1, h2, h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 6px 10px;
   border-width: 1px;
   border-color: transparent;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 12px;
+  line-height: 16px;
   font-weight: 500;
   border-radius: 6px;
   color: #4F46E5;
@@ -203,6 +210,14 @@ h1, h2, h3 {
   box-shadow: 0 5px 10px -10px rgba(31, 18, 53, 0.6);
   cursor: pointer;
   text-decoration: none;
+}
+
+@media screen and (min-width:480px) {
+  .button {
+    padding: 8px 16px;
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 a {
@@ -222,6 +237,15 @@ a {
   background-color: #4338ca;
 }
 
+.button.button-secondary {
+  color:  #4338CA;
+  background-color: #E0E7FF;
+}
+
+.button.button-secondary:hover {
+  background-color: #C7D2FE;
+}
+
 .button.button-xl {
   padding-left: 32px;
   padding-right: 32px;
@@ -233,4 +257,14 @@ a {
 
 .button + .button {
   margin-left: 10px;
+}
+
+.bubble {
+  background-color: #D1FAE5;
+  color: #047857;
+  font-size: 12px;
+  border-radius: 9999px;
+  padding: 2px 8px;
+  margin-left: 10px;
+  white-space: nowrap;
 }

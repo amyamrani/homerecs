@@ -59,7 +59,7 @@ class App extends Component {
     return (
       <APIContext.Provider value={contextValue}>
         <div className='app'>
-          <Nav loggedIn={false} />
+          <Nav />
 
           <main>
             <Switch>
