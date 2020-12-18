@@ -5,11 +5,11 @@ class LoginPage extends Component {
   render() {
     return (
       <div className='page-container'>
-        <section>
+        <div>
           <h1 className='section-title'>Login</h1>
 
           <LoginForm />
-        </section>
+        </div>
       </div>
     )
   }

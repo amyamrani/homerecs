@@ -52,9 +52,9 @@ class EditGroupPage extends Component {
     return (
       <div className='page-container'>
 
-        <section>
+        <div>
           <h1 className='section-title'>Edit Group</h1>
-        </section>
+        </div>
 
         {group && <EditGroupForm group={group} />}
       </div>

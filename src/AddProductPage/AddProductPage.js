@@ -6,9 +6,9 @@ class AddProductPage extends Component {
     return (
       <div className='page-container'>
 
-        <section>
+        <div>
           <h1 className='section-title'>Add New Product</h1>
-        </section>
+        </div>
 
         <AddProductForm />
 

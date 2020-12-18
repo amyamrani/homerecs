@@ -14,9 +14,9 @@ class JoinGroupPage extends Component {
     return (
       <div className='page-container'>
 
-        <section>
+        <div>
           <h1 className='section-title'>Join a Group</h1>
-        </section>
+        </div>
 
         <JoinGroupForm />
 

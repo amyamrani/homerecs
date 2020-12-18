@@ -50,9 +50,9 @@ class EditProductPage extends Component {
     return (
       <div className='page-container'>
 
-        <section>
+        <div>
           <h1 className='section-title'>Edit Product</h1>
-        </section>
+        </div>
 
         {this.state.product && <EditProductForm product={this.state.product} />}
       </div>
