@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import APIContext from '../APIContext';
 import './LandingPage.css';
 
 class LandingPage extends Component {
+  static contextType = APIContext;
+
   render() {
     return (
       <div className='page-container'>
@@ -15,14 +18,17 @@ class LandingPage extends Component {
           </div>
 
           <div className='hero-buttons'>
+            {!this.context.isLoggedIn && (
+              <div>
+                <Link className="button button-primary button-xl" to='/signup'>
+                  Get started
+                </Link>
 
-            <Link className="button button-primary button-xl" to='/signup'>
-              Get started
-            </Link>
-
-            <Link to='/login' className="button button-xl">
-              Live Demo
-            </Link>
+                <Link to='/login' className="button button-xl">
+                  Live Demo
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
