@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './Nav.css';
 import APIContext from '../APIContext';
 
@@ -8,7 +8,7 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className='nav'>
+      <nav className={`nav ${this.props.location.pathname == '/' ? '' : 'nav-dark'}`}>
         <div>
           <Link to='/' className='logo-icon'>
             <svg className="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -23,7 +23,7 @@ class Nav extends Component {
         <div>
           {this.context.isLoggedIn && (
             <div>
-              <Link to='/dashboard' className='button button-primary'>Dashboard</Link>
+              <Link to='/dashboard' className='button button-secondary'>Dashboard</Link>
 
               <button
                   className="button"
@@ -53,4 +53,4 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+export default withRouter(Nav);

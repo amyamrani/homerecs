@@ -13,7 +13,10 @@ nav.nav {
   width: auto;
 }
 
-.logo-icon svg + .logo-icon svg {
-  margin-left: -6px;
-  margin-top: -8px;
+.nav.nav-dark {
+  background-color: #4338CA;
+}
+
+.nav.nav-dark .logo-icon svg {
+  color: white;
 }
