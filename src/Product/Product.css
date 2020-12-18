@@ -34,15 +34,6 @@
   justify-content: space-between;
 }
 
-.category-type {
-  background-color: #D1FAE5;
-  color: #047857;
-  font-size: 12px;
-  border-radius: 9999px;
-  padding: 2px 8px;
-  margin-left: 10px;
-}
-
 @media screen and (min-width:640px) {
   .product-list {
     grid-template-columns: repeat(2,minmax(0,1fr));

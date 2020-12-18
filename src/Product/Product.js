@@ -11,7 +11,7 @@ class Product extends Component {
         <div className='product-body'>
           <div className='product-title'>
             <a href={product.url} target='_blank' rel="noreferrer">{product.name}</a>
-            <span className='category-type'>{product.category}</span>
+            <span className='bubble'>{product.category}</span>
           </div>
 
           <div className='product-comments'>
