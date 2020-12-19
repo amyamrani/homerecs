@@ -109,9 +109,9 @@ class EditProductForm extends Component {
           />
         </div>
 
-        <div className="form-actions">
-          <button className="button" onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
-          <button className="button button-primary" type='submit'>Save</button>
+        <div className='form-actions'>
+          <button className='button' onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
+          <button className='button button-primary' type='submit'>Save</button>
         </div>
       </form>
     );

@@ -77,8 +77,8 @@ class AddProductForm extends Component {
             </select>
 
             <div className='dropdown-icon'>
-              <svg className='icon' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <svg className='icon' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
               </svg>
             </div>
           </div>
@@ -119,9 +119,9 @@ class AddProductForm extends Component {
           />
         </div>
 
-        <div className="form-actions">
-          <button className="button" onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
-          <button className="button button-primary" type='submit'>Save</button>
+        <div className='form-actions'>
+          <button className='button' onClick={() => this.props.history.push('/dashboard')} type='button'>Cancel</button>
+          <button className='button button-primary' type='submit'>Save</button>
         </div>
       </form>
     );
