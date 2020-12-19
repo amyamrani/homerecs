@@ -39,18 +39,23 @@ class JoinGroupForm extends Component {
       if (data.error) {
         this.setState({errorMessage: data.error.message})
       } else {
+        // save the updated user in localStorage
         localStorage.setItem('user', JSON.stringify(data))
         this.props.history.push('/dashboard');
       }
     })
     .catch(err => {
-      this.setState({errorMessage: 'Please try again.'})
+      this.setState({errorMessage: 'Invalid group code.'})
     });
   }
 
   render() {
     return (
       <form className='form' onSubmit={this.join}>
+        {this.state.errorMessage && (
+          <div className='error-message'>{this.state.errorMessage}</div>
+        )}
+
         <div className='form-group'>
           <label htmlFor='group-code'>Group Code:</label>
           <input

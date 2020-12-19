@@ -51,7 +51,7 @@ class LoginForm extends Component {
     return (
       <form className='form' onSubmit={this.handleLogin}>
         {this.state.errorMessage && (
-          <div className='login-error-message'>{this.state.errorMessage}</div>
+          <div className='error-message'>{this.state.errorMessage}</div>
         )}
 
         <div>
