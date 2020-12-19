@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
-import App from './App';
+import AddProductPage from './AddProductPage';
 
-it('App renders without crashing', () => {
+it('AddProductPage renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <BrowserRouter>
-      <App />
+      <AddProductPage />
     </BrowserRouter>,
     div
   );
