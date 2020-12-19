@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import APIContext from '../APIContext';
 import config from '../config';
 import { withRouter } from 'react-router-dom';
+import LoadingPage from '../LoadingPage/LoadingPage';
 import './GroupPage.css';
 
 class GroupPage extends Component {
@@ -15,6 +16,8 @@ class GroupPage extends Component {
       users: [],
       group: {},
       error: undefined,
+      isLoadingGroup: true,
+      isLoadingUsers: true,
     }
   };
 
@@ -24,6 +27,8 @@ class GroupPage extends Component {
   }
 
   getGroup = () => {
+    this.setState({ isLoadingGroup: true });
+
     const authToken = localStorage.getItem('authToken');
 
     fetch(`${config.API_BASE_URL}/api/groups/${this.props.groupId}`, {
@@ -43,9 +48,12 @@ class GroupPage extends Component {
         this.setState({ group: res })
       })
       .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoadingGroup: false }))
   };
 
   getUsers = () => {
+    this.setState({ isLoadingUsers: true });
+
     const authToken = localStorage.getItem('authToken')
 
     fetch(`${config.API_BASE_URL}/api/users?group_id=${this.props.groupId}`, {
@@ -65,6 +73,7 @@ class GroupPage extends Component {
         this.setState({ users: res })
       })
       .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoadingUsers: false }))
   };
 
   leaveGroup = () => {
@@ -72,6 +81,7 @@ class GroupPage extends Component {
       group_id: null,
     }
 
+    // get the current user's id from localStorage
     const authToken = localStorage.getItem('authToken')
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -110,6 +120,10 @@ class GroupPage extends Component {
       return <Redirect to='/' />
     }
 
+    if (this.state.isLoadingGroup || this.state.isLoadingUsers) {
+      return <LoadingPage />;
+    }
+
     return (
       <div className='page-container'>
 
@@ -143,7 +157,7 @@ class GroupPage extends Component {
             </div>
 
             <div className='user-boxes'>
-              {users.filter(user => user.id != currentUser.id).map(user => (
+              {users.filter(user => user.id !== currentUser.id).map(user => (
                 <div key={user.id} className='user-box'>
                   <div className='user-box-initials'>
                     {user.first_name[0]}{user.last_name[0]}

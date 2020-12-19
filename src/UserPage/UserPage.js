@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import APIContext from '../APIContext';
 import Product from '../Product/Product';
+import LoadingPage from '../LoadingPage/LoadingPage';
 import config from '../config';
 
 class UserPage extends Component {
@@ -14,6 +15,8 @@ class UserPage extends Component {
       products: [],
       user: undefined,
       error: undefined,
+      isLoadingUser: true,
+      isLoadingProducts: true,
     }
   };
 
@@ -22,6 +25,8 @@ class UserPage extends Component {
   }
 
   getUser = () => {
+    this.setState({ isLoadingUser: true });
+
     const authToken = localStorage.getItem('authToken');
 
     fetch(`${config.API_BASE_URL}/api/users/${this.props.userId}`, {
@@ -39,12 +44,16 @@ class UserPage extends Component {
       })
       .then((res) => {
         this.setState({ user: res })
+        // get the user's products after successfully fetching the user
         this.getUserProducts();
       })
       .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoadingUser: false }))
   };
 
   getUserProducts = () => {
+    this.setState({ isLoadingProducts: true });
+
     const authToken = localStorage.getItem('authToken')
 
     fetch(`${config.API_BASE_URL}/api/products?user_id=${this.state.user.id}`, {
@@ -64,11 +73,16 @@ class UserPage extends Component {
         this.setState({ products: res })
       })
       .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoadingProducts: false }))
   };
 
   render() {
     if (this.context.isLoggedIn === false) {
       return <Redirect to='/' />
+    }
+
+    if (this.state.isLoadingUser || this.state.isLoadingProducts) {
+      return <LoadingPage />;
     }
 
     const { user, products } = this.state;

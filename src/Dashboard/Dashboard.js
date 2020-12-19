@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Dashboard.css';
 import APIContext from '../APIContext';
 import Product from '../Product/Product';
+import LoadingPage from '../LoadingPage/LoadingPage';
 import { Link, Redirect } from 'react-router-dom';
 import config from '../config';
 
@@ -15,6 +16,8 @@ class Dashboard extends Component {
       products: [],
       group: undefined,
       error: undefined,
+      isLoadingGroup: true,
+      isLoadingProducts: true,
     }
   };
 
@@ -24,6 +27,8 @@ class Dashboard extends Component {
   }
 
   getUserGroup = () => {
+    this.setState({ isLoadingGroup: true });
+
     const authToken = localStorage.getItem('authToken');
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -49,9 +54,12 @@ class Dashboard extends Component {
         this.setState({ group: res })
       })
       .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoadingGroup: false }))
   };
 
   getUserProducts = () => {
+    this.setState({ isLoadingProducts: true });
+
     const user = JSON.parse(localStorage.getItem('user'))
     const authToken = localStorage.getItem('authToken')
 
@@ -76,6 +84,7 @@ class Dashboard extends Component {
         this.setState({ products: res })
       })
       .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoadingProducts: false }))
   };
 
   deleteProduct = (id) => {
@@ -103,6 +112,11 @@ class Dashboard extends Component {
   render() {
     if (this.context.isLoggedIn === false) {
       return <Redirect to='/' />
+    }
+
+    // wait to render the dashboard until both group and products are ready
+    if (this.state.isLoadingGroup || this.state.isLoadingProducts) {
+      return <LoadingPage />;
     }
 
     return (
