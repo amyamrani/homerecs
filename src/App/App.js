@@ -15,6 +15,7 @@ import GroupPage from '../GroupPage/GroupPage';
 import UserPage from '../UserPage/UserPage';
 import Footer from '../Footer/Footer';
 import './App.css';
+import ErrorBoundary from '../ErrorBoundary';
 
 class App extends Component {
   constructor(props) {
@@ -62,77 +63,79 @@ class App extends Component {
           <Nav />
 
           <main>
-            <Switch>
-              <Route
-                exact path='/'
-                component={LandingPage}
-              />
+            <ErrorBoundary>
+              <Switch>
+                <Route
+                  exact path='/'
+                  component={LandingPage}
+                />
 
-              <Route
-                exact path='/login'
-                component={LoginPage}
-              />
+                <Route
+                  exact path='/login'
+                  component={LoginPage}
+                />
 
-              <Route
-                exact path='/signup'
-                component={SignupPage}
-              />
+                <Route
+                  exact path='/signup'
+                  component={SignupPage}
+                />
 
-              <Route
-                exact path='/dashboard'
-                component={Dashboard}
-              />
+                <Route
+                  exact path='/dashboard'
+                  component={Dashboard}
+                />
 
-              <Route
-                exact path='/products/new'
-                component={AddProductPage}
-              />
+                <Route
+                  exact path='/products/new'
+                  component={AddProductPage}
+                />
 
-              <Route
-                exact path='/products/:id/edit'
-                render={(routerProps) => {
-                  const id = routerProps.match.params.id;
+                <Route
+                  exact path='/products/:id/edit'
+                  render={(routerProps) => {
+                    const id = routerProps.match.params.id;
 
-                  return <EditProductPage id={id} />
-                }}
-              />
+                    return <EditProductPage id={id} />
+                  }}
+                />
 
-              <Route
-                exact path='/groups/new'
-                component={AddGroupPage}
-              />
+                <Route
+                  exact path='/groups/new'
+                  component={AddGroupPage}
+                />
 
-              <Route
-                exact path='/groups/join'
-                component={JoinGroupPage}
-              />
+                <Route
+                  exact path='/groups/join'
+                  component={JoinGroupPage}
+                />
 
-              <Route
-                exact path='/groups/:id'
-                render={(routerProps) => {
-                  const groupId = routerProps.match.params.id;
+                <Route
+                  exact path='/groups/:id'
+                  render={(routerProps) => {
+                    const groupId = routerProps.match.params.id;
 
-                  return <GroupPage groupId={groupId} />
-                }}
-              />
+                    return <GroupPage groupId={groupId} />
+                  }}
+                />
 
-              <Route
-                exact path='/groups/:id/edit'
-                render={(routerProps) => {
-                  const groupId = routerProps.match.params.id;
-                  return <EditGroupPage groupId={groupId} />
-                }}
-              />
+                <Route
+                  exact path='/groups/:id/edit'
+                  render={(routerProps) => {
+                    const groupId = routerProps.match.params.id;
+                    return <EditGroupPage groupId={groupId} />
+                  }}
+                />
 
-              <Route
-                exact path='/users/:id'
-                render={(routerProps) => {
-                  const id = routerProps.match.params.id;
+                <Route
+                  exact path='/users/:id'
+                  render={(routerProps) => {
+                    const id = routerProps.match.params.id;
 
-                  return <UserPage userId={id} />
-                }}
-              />
-            </Switch>
+                    return <UserPage userId={id} />
+                  }}
+                />
+              </Switch>
+            </ErrorBoundary>
           </main>
 
           <Footer />
