@@ -33,7 +33,7 @@ class Dashboard extends Component {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (!user || !user.group_id) {
-      this.setState({ group: null })
+      this.setState({ group: null, isLoadingGroup: false })
       return;
     }
 
