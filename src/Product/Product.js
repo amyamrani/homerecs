@@ -10,7 +10,7 @@ class Product extends Component {
       <div className='product'>
         <div className='product-body'>
           <div className='product-title'>
-            <a href={product.url} target='_blank' rel="noreferrer">{product.name}</a>
+            <a className='link-xl' href={product.url} target='_blank' rel="noreferrer">{product.name}</a>
             <span className='bubble'>{product.category}</span>
           </div>
 

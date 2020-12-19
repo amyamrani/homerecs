@@ -14,7 +14,7 @@
 }
 
 .hero-title-color{
-  color: #4338CA;
+  color: #0369A1;
 }
 
 .hero-subtitle {
@@ -72,7 +72,7 @@
 }
 
 .featured-section-box {
-  background-color: #4338CA;
+  background-color: #0369A1;
   border-radius: 8px;
   overflow: hidden;
   padding: 32px;
@@ -121,7 +121,7 @@
 }
 
 .info-item-text {
-  color: #C7D2FE;
+  color: #F0F9FF;
   line-height: 24px;
   font-size: 18px;
 }
@@ -138,7 +138,7 @@
   width: 48px;
   border-radius: 8px;
   background-color: white;
-  color: #6366F1;
+  color: #0EA5E9;
 }
 
 .icon-block svg {

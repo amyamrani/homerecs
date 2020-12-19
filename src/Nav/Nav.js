@@ -8,7 +8,7 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className={`nav ${this.props.location.pathname == '/' ? '' : 'nav-dark'}`}>
+      <nav className={`nav ${this.props.location.pathname === '/' ? '' : 'nav-dark'}`}>
         <div>
           <Link to='/' className='logo-icon'>
             <svg className="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -38,7 +38,7 @@ class Nav extends Component {
           {!this.context.isLoggedIn && (
             <div>
               <Link to='/login' className="button">
-                Log in
+                Login
               </Link>
 
               <Link to='/signup' className="button button-primary">

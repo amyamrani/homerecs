@@ -21,7 +21,7 @@ class LandingPage extends Component {
             {!this.context.isLoggedIn && (
               <div>
                 <Link className="button button-primary button-xl" to='/signup'>
-                  Get started
+                  Get Started
                 </Link>
 
                 <Link to='/login' className="button button-xl">

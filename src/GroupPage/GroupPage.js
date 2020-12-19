@@ -164,7 +164,7 @@ class GroupPage extends Component {
                   </div>
 
                   <div className='user-box-details'>
-                    <Link to={`/users/${user.id}`}>
+                    <Link className='link' to={`/users/${user.id}`}>
                       {user.first_name} {user.last_name}
                     </Link>
                   </div>

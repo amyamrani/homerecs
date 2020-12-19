@@ -8,13 +8,13 @@ nav.nav {
 
 .logo-icon svg {
   display: inline;
-  color: #4338CA;
+  color: #0369A1;
   height: 30px;
   width: auto;
 }
 
 .nav.nav-dark {
-  background-color: #4338CA;
+  background-color: #0369A1;
 }
 
 .nav.nav-dark .logo-icon svg {
