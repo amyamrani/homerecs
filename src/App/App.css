@@ -127,7 +127,7 @@ h1, h2, h3 {
   font-size: 14px;
 }
 
-.form input {
+.form input, .form textarea {
   display: block;
   margin-bottom: 15px;
   font-size: 16px;
@@ -145,6 +145,11 @@ h1, h2, h3 {
   line-height: 1.25;
   border-radius: 4px;
   margin-top: 2px;
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
 .form select {

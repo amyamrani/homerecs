@@ -66,10 +66,12 @@ class AddProductForm extends Component {
               onChange={(e) => this.setState({ category: e.target.value })}
             >
               <option value=''>Select</option>
+              <option value='Entryway'>Entryway</option>
               <option value='Living Room'>Living Room</option>
               <option value='Dining Room'>Dining Room</option>
               <option value='Kitchen'>Kitchen</option>
               <option value='Bedroom'>Bedroom</option>
+              <option value='Play Room'>Play Room</option>
               <option value='Bathroom'>Bathroom</option>
               <option value='Laundry Room'>Laundry Room</option>
               <option value='Outdoor/Patio'>Outdoor/Patio</option>
@@ -110,10 +112,11 @@ class AddProductForm extends Component {
 
         <div className='form-group'>
           <label htmlFor='product-comments'>Comments:</label>
-          <input
+          <textarea
             required
             id='product-comments'
             type='text'
+            rows='5'
             onChange={(e) => this.setState({ comments: e.target.value })}
             value={this.state.comments}
           />

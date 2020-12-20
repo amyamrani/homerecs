@@ -7,7 +7,7 @@ class AddGroupPage extends Component {
       <div className='page-container'>
 
       <div>
-        <h1 className='section-title'>Add New Group</h1>
+        <h1 className='section-title'>Create Group</h1>
       </div>
 
       <GroupForm />
