@@ -150,6 +150,8 @@ h1, h2, h3 {
 .form textarea {
   resize: vertical;
   min-height: 100px;
+  font-family: 'Montserrat',
+  sans-serif;
 }
 
 .form select {

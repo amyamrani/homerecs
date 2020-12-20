@@ -57,22 +57,33 @@ class EditProductForm extends Component {
       <form className='form' onSubmit={this.submit}>
         <div className='form-group'>
           <label htmlFor='product-category'>Category:</label>
-          <select
-            required
-            id='product-category'
-            value={this.state.category}
-            onChange={(e) => this.setState({ category: e.target.value })}
-          >
-            <option value=''>Select</option>
-            <option value='Living Room'>Living Room</option>
-            <option value='Dining Room'>Dining Room</option>
-            <option value='Kitchen'>Kitchen</option>
-            <option value='Bedroom'>Bedroom</option>
-            <option value='Bathroom'>Bathroom</option>
-            <option value='Laundry Room'>Laundry Room</option>
-            <option value='Outdoor/Patio'>Outdoor/Patio</option>
-            <option value='Garage'>Garage</option>
-          </select>
+
+          <div className='dropdown'>
+            <select
+              required
+              id='product-category'
+              value={this.state.category}
+              onChange={(e) => this.setState({ category: e.target.value })}
+            >
+              <option value=''>Select</option>
+              <option value='Entryway'>Entryway</option>
+              <option value='Living Room'>Living Room</option>
+              <option value='Dining Room'>Dining Room</option>
+              <option value='Kitchen'>Kitchen</option>
+              <option value='Bedroom'>Bedroom</option>
+              <option value='Play Room'>Play Room</option>
+              <option value='Bathroom'>Bathroom</option>
+              <option value='Laundry Room'>Laundry Room</option>
+              <option value='Outdoor/Patio'>Outdoor/Patio</option>
+              <option value='Garage'>Garage</option>
+            </select>
+
+            <div className='dropdown-icon'>
+              <svg className='icon' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 9l-7 7-7-7' />
+              </svg>
+            </div>
+          </div>
         </div>
 
         <div className='form-group'>
@@ -100,10 +111,11 @@ class EditProductForm extends Component {
 
         <div className='form-group'>
           <label htmlFor='product-comments'>Comments:</label>
-          <input
+          <textarea
             required
             id='product-comments'
             type='text'
+            rows='5'
             onChange={(e) => this.setState({ comments: e.target.value })}
             value={this.state.comments}
           />

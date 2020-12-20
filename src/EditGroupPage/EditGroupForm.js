@@ -62,7 +62,7 @@ class EditGroupForm extends Component {
 
         <div className='form-actions'>
           <button className='button' onClick={() => this.props.history.push(`/groups/${this.props.group.id}`)} type='button'>Cancel</button>
-          <button className='button button-primary' type='submit'>Update</button>
+          <button className='button button-primary' type='submit'>Save</button>
         </div>
       </form>
     );
