@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import APIContext from '../APIContext';
+import join_group_screenshot from '../images/join_group_screenshot.png';
+import products_screenshot from '../images/products_screenshot.png';
 import './LandingPage.css';
 
 class LandingPage extends Component {
@@ -71,7 +73,7 @@ class LandingPage extends Component {
             </div>
             <div className='featured-section-box-half'>
               <div className='featured-section-image'>
-                <img src='' alt='App screenshot' />
+                <img src={ join_group_screenshot} alt='Join Group Form' />
               </div>
             </div>
           </div>
@@ -81,7 +83,7 @@ class LandingPage extends Component {
           <div className='featured-section-box'>
             <div className='featured-section-box-half'>
               <div className='featured-section-image'>
-                <img src='' alt='App screenshot' />
+                <img src={ products_screenshot } alt='My Products Page' />
               </div>
             </div>
 
